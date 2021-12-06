@@ -79,12 +79,14 @@ export async function runAzCliCommandBlocking(
   args: string[]
 ): Promise<string> {
   const proc = spawn(azPath, args, {
+    stdio: "ignore",
     detached: true,
   });
   proc.unref();
 
   let output = "";
   proc.stdout.on("data", (data) => {
+    console.log("output");
     output += data.toString();
   });
 
