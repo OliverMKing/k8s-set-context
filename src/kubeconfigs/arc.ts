@@ -85,10 +85,12 @@ export async function runAzCliCommandBlocking(
   console.log("here");
 
   let output = "";
-  proc.stdout.addListener("data", (data) => {
-    console.log("output");
+  proc.stdout.setEncoding("utf8");
+  proc.stdout.on("data", (data) => {
     output += data.toString();
   });
+  proc.stderr.setEncoding("utf8");
+  proc.stderr.on("data", (data) => (output += data.toString()));
 
   await sleep(AZ_TIMEOUT_SECONDS);
   console.log("here3");
