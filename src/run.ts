@@ -30,6 +30,9 @@ export async function run() {
   fs.chmodSync(kubeconfigPath, "600");
   core.debug("Setting KUBECONFIG environment variable");
   core.exportVariable("KUBECONFIG", kubeconfigPath);
+
+  // must explicitly exit process in case we spawned new ones
+  process.exit(0);
 }
 
 // Run the application
