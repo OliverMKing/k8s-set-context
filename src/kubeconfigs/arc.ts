@@ -80,19 +80,20 @@ export async function runAzCliCommandBlocking(
 ): Promise<string> {
   const proc = spawn(azPath, args, {
     detached: true,
+    stdio: "ignore",
   });
   proc.unref();
   console.log("here");
 
   let output = "";
+  /** 
   proc.stdout.addListener("data", (data) => {
     console.log("output");
     output += data.toString();
-  });
+  });*/
 
   await sleep(AZ_TIMEOUT_SECONDS);
   console.log("here3");
-  console.log(proc.stdout);
   return output;
 }
 
