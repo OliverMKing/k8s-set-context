@@ -79,10 +79,10 @@ export async function runAzCliCommandBlocking(
   args: string[]
 ): Promise<string> {
   const proc = spawn(azPath, args, {
-    stdio: "ignore",
     detached: true,
   });
   proc.unref();
+  console.log("here");
 
   let output = "";
   proc.stdout.on("data", (data) => {
@@ -91,6 +91,7 @@ export async function runAzCliCommandBlocking(
   });
 
   await sleep(AZ_TIMEOUT_SECONDS);
+  console.log("here3");
   return output;
 }
 
