@@ -28,7 +28,7 @@ export async function run() {
   core.debug(`Writing kubeconfig contents to ${kubeconfigPath}`);
   fs.writeFileSync(kubeconfigPath, kubeconfigWithContext);
   fs.chmodSync(kubeconfigPath, "600");
-  core.debug("Setting KUBECONFIG environment variable");
+  core.debug("Setting KUBECONFIG environment variable TESTING asdkljfaslkj");
   core.exportVariable("KUBECONFIG", kubeconfigPath);
 }
 
